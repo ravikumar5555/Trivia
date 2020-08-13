@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>First Question</title>
+     <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+  <!-- Custom fonts for this template -->
+  <link href="{%static 'vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet">
+  <link href="{%static 'vendor/simple-line-icons/css/simple-line-icons.css' %}" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+
+  <!-- Custom styles for this template -->
+  <link href="{%static 'css/landing-page.min.css' %}" rel="stylesheet">
+
+</head>
+<body>
+
+<div class="container">
+<div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
+<form method="post" action="/Trivia/second">
+{% csrf_token %}
+{% if question %}
+        <h3 class="mb-4">{{ question}} </h3>
+        <ul>
+        {% for option in options %}
+            <input type="radio" value={{ option }} name="choice"/> {{ option }}
+            <br>
+        {% endfor %}
+        </ul>
+        <input class="btn btn-primary" type="submit" value="Next" />
+
+{% else %}
+    <p>No questions are available.</p>
+{% endif %}
+</form>
+</div>
+</div>
+</body>
+</html>
